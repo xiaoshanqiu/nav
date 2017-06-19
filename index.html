@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<script src="js/jquery-1.11.3.js"></script>
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	ul{
+		margin: 20px 40px;
+		position: relative;
+		font-size: 0;
+		background-color: pink;
+	}
+	li{
+		font-size: 20px;
+		display: inline-block;
+		list-style: none;
+	}
+	a{
+		position: relative;
+		padding: 10px 30px;
+		display: block;
+		z-index: 1000;
+		text-decoration: none;
+		color: black;
+	}
+	.on{
+		background-color: yellow;
+	}
+	.bg{
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background-color: yellow;
+	}
+</style>
+<script>
+	$(function(){
+		var now_left = $('.on').position().left;
+		$('.bg').css('left',now_left)
+		$('ul li').mouseover(function(){
+			var curr_width = $(this).width();
+			var curr_left = $(this).position().left;
+			// $('.bg').css('width',curr_width),
+			// $('.bg').css('left',curr_left)
+
+			$('.bg').stop().animate({
+				'width':curr_width,
+				'left':curr_left
+			})
+
+		})
+		$('ul li').mouseleave(function(){
+			$('.bg').stop().animate({
+				'width': 0,
+				'left':now_left
+			})
+		})
+
+	})
+</script>
+<body>
+	<ul>
+		<li><a href="">首页</a></li>
+		<li><a href="">搜索框</a></li>
+		<li class="on"><a href="">搜索框</a></li>
+		<li><a href="">首页</a></li>
+		<li><a href="">问题中心</a></li>
+		<li><a href="">问题中心</a></li>
+		<li class="bg"></li>
+	</ul>
+</body>
+</html>
